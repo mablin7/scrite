@@ -1,4 +1,6 @@
 {
     "presets": ["@babel/preset-typescript"],
-    "plugins": ["snowpack/assets/babel-plugin.js"]
+    "plugins": [
+      ["snowpack/assets/babel-plugin.js", {}]
+    ]
   }
