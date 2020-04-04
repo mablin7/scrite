@@ -3,7 +3,8 @@
   "version": "0.0.1",
   "description": "An infinite online notebook ",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "npx concurrently \"npx babel client/src/ --out-dir client/dist --watch\" \"npx now dev\"",
+    "prepare": "npx snowpack install --clean"
   },
   "repository": {
     "type": "git",
@@ -19,5 +20,16 @@
   "bugs": {
     "url": "https://github.com/mablin7/scrite/issues"
   },
-  "homepage": "https://github.com/mablin7/scrite#readme"
+  "homepage": "https://github.com/mablin7/scrite#readme",
+  "devDependencies": {
+    "@babel/cli": "^7.8.4",
+    "@babel/core": "^7.9.0",
+    "@babel/preset-typescript": "^7.9.0",
+    "concurrently": "^5.1.0",
+    "now": "^17.1.1",
+    "snowpack": "^1.6.0"
+  },
+  "dependencies": {
+    "preact": "^10.3.4"
+  }
 }
