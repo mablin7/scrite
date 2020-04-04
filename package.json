@@ -31,6 +31,7 @@
     "snowpack": "^1.6.0"
   },
   "dependencies": {
+    "@now/node": "^1.5.0",
     "faunadb": "^2.13.1",
     "htm": "^3.0.3",
     "preact": "^10.3.4"
