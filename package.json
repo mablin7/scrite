@@ -1,0 +1,23 @@
+{
+  "name": "scrite",
+  "version": "0.0.1",
+  "description": "An infinite online notebook ",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mablin7/scrite.git"
+  },
+  "keywords": [
+    "webapp",
+    "notebook",
+    "demo"
+  ],
+  "author": "mablin7",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mablin7/scrite/issues"
+  },
+  "homepage": "https://github.com/mablin7/scrite#readme"
+}
