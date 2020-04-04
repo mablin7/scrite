@@ -3,9 +3,8 @@
   "version": "0.0.1",
   "description": "An infinite online notebook ",
   "scripts": {
-    "start": "npm run build && cd public && npx concurrently \"npx babel src --out-dir dist --extensions '.ts' --watch\" \"npx live-server\"",
-    "build": "npx snowpack install --dest 'public/web_modules/' --include 'public/src/**/*.ts' --clean && cd public && npx babel src --out-dir dist --extensions '.ts'",
-    "prepare": "npm run build"
+    "start": "npm run build && cd public && npx concurrently \"npx babel ../src --out-dir dist --extensions '.ts' --config-file ../.babelrc --watch\" \"npx live-server\"",
+    "build": "npx snowpack install --dest 'public/web_modules/' --include 'src/**/*.ts' --clean && cd public && npx babel ../src --out-dir dist --extensions '.ts' --config-file ../.babelrc"
   },
   "repository": {
     "type": "git",
@@ -32,6 +31,7 @@
     "snowpack": "^1.6.0"
   },
   "dependencies": {
+    "faunadb": "^2.13.1",
     "htm": "^3.0.3",
     "preact": "^10.3.4"
   }
