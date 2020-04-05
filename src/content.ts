@@ -102,14 +102,15 @@ export function Content({ title, content }: { title: string, content: string }) 
                 if (!imgFileInput.current) return
                 imgFileInput.current.click()
             }
+        },
+        {
+            content: "Save",
+            callback: () => {
+                if (!editorRef.current) return
+                console.log({ title, content: editorRef.current.innerHTML })
+            }
         }
     ]
-
-    setInterval(() => {
-        if (!editorRef.current) return
-        console.log({ title, content: editorRef.current.innerHTML })
-        postData('/api/update_note', { title, content: editorRef.current.innerHTML })
-    }, 5000)
 
     return html`
         ${Menu({ parentRef: editorRef, options, onopen: storeCaretPos })}
