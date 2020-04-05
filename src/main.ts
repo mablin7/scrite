@@ -40,10 +40,10 @@ function App() {
 
     if (title === '') {
         let pathArray = window.location.search.replace('?', '')
-        fetch(`/api/checkout_note?title=${pathArray[pathArray.length-1]}`)
+        fetch(`/api/checkout_note?title=${pathArray}`)
         .then(res => res.json())
-        .then(({n_title, content}) => {
-            setTitle(n_title)
+        .then(({title: n, content}) => {
+            setTitle(n)
             setCont(content)
         })
     }
