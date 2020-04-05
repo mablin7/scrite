@@ -39,7 +39,7 @@ function App() {
     const [cont, setCont] = useState('')
 
     if (title === '') {
-        let pathArray = window.location.pathname.split('/')
+        let pathArray = window.location.search.replace('?', '')
         fetch(`/api/checkout_note?title=${pathArray[pathArray.length-1]}`)
         .then(res => res.json())
         .then(({n_title, content}) => {
