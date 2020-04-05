@@ -108,6 +108,7 @@ export function Content({ title, content }: { title: string, content: string }) 
             callback: () => {
                 if (!editorRef.current) return
                 console.log({ title, content: editorRef.current.innerHTML })
+                postData('/api/update_note', { title, content: editorRef.current.innerHTML })
             }
         }
     ]
