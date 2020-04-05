@@ -15,7 +15,7 @@ async function postData(url = '', data = {}) {
       },
       body: JSON.stringify(data) // body data type must match "Content-Type" header
     });
-    return await response.json(); // parses JSON response into native JavaScript objects
+    return await response // parses JSON response into native JavaScript objects
   }
   
 
@@ -23,6 +23,7 @@ export function Content({ title, content }: { title: string, content: string }) 
     const editorRef: PropRef<HTMLDivElement|null> = useRef(null)
     const imgFileInput: PropRef<HTMLInputElement|null> = useRef(null)
     const [lastCaretPos, setLastCaretPos]  = useState<{ offset: number, textNode: Node|null }>({ offset: 0, textNode: null })
+    const [isLoading, setLoading] = useState(false)
 
     useEffect(() => {
         if (editorRef.current) editorRef.current.innerHTML = content
@@ -109,6 +110,10 @@ export function Content({ title, content }: { title: string, content: string }) 
                 if (!editorRef.current) return
                 console.log({ title, content: editorRef.current.innerHTML })
                 postData('/api/update_note', { title, content: editorRef.current.innerHTML })
+                .then(() => setLoading(false))
+                .catch(() => setLoading(false))
+
+                setLoading(true)
             }
         }
     ]
@@ -117,5 +122,6 @@ export function Content({ title, content }: { title: string, content: string }) 
         ${Menu({ parentRef: editorRef, options, onopen: storeCaretPos })}
         <input ref=${imgFileInput} type="file" style="position: fixed; top: -100em" onchange="${openFile}"/>
         <div contenteditable class="content" ref=${editorRef} spellcheck="false" oninput="${console.log('asd')}"></div>
+        <div class="loading" style="display:${isLoading ? 'block': 'none'};">Loading&#8230;</div>
     `
 }

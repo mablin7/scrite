@@ -1,12 +1,13 @@
 import { NowRequest, NowResponse } from '@now/node'
-import faunadb, { query as q } from 'faunadb'
+import { query as q, Client } from 'faunadb'
+import json from 'big-json'
 
 const { FAUNADB_SECRET: secret } = process.env
 
-let client: faunadb.Client | undefined
+let client: Client | undefined
 
 if (secret) {
-  client = new faunadb.Client({ secret })
+  client = new Client({ secret })
 }
 
 export default async (req: NowRequest, res: NowResponse) => {
@@ -47,7 +48,19 @@ export default async (req: NowRequest, res: NowResponse) => {
   
       res.json({ title, content: '' })
     } else {
-      res.json(notes[0].data)
+      let data = notes[0].data
+      function compare(a, b) {
+        if (a.chunkIdx < b.chunkIdx) {
+          return -1;
+        }
+        if (a.chunkIdx > b.chunkIdx) {
+          return 1;
+        }
+        return 0;
+      }      
+      data.content.sort(compare)
+      let content = data.content.reduce((acc, val) => acc+val.chunk, '')
+      res.json({ title: data.title, content })
     }
   } catch (error) {
     res.status(500).json({ error })

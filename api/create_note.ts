@@ -1,13 +1,13 @@
 import { NowRequest, NowResponse } from '@now/node'
-import faunadb, { query as q } from 'faunadb'
+import { query as q, Client } from 'faunadb'
 import { nanoid } from 'nanoid'
 
 const { FAUNADB_SECRET: secret } = process.env
 
-let client: faunadb.Client | undefined
+let client: Client | undefined
 
 if (secret) {
-  client = new faunadb.Client({ secret })
+  client = new Client({ secret })
 }
 
 export default async (req: NowRequest, res: NowResponse) => {
