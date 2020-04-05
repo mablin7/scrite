@@ -41,11 +41,11 @@ export default async (req: NowRequest, res: NowResponse) => {
       await client.query(
         q.Create(
           q.Collection('notes'),
-          { data: { title: title, data: '' } }
+          { data: { title: title, content: '' } }
         )
       )
   
-      res.json({ title, data: '' })
+      res.json({ title, content: '' })
     } else {
       res.json(notes[0].data)
     }
