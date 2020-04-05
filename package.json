@@ -3,8 +3,9 @@
   "version": "0.0.1",
   "description": "An infinite online notebook ",
   "scripts": {
-    "dev": "npx concurrently \"npx babel client/src/ --out-dir client/dist --watch\" \"npx now dev\"",
-    "prepare": "npx snowpack install --clean"
+    "start": "npm run prepare && npx concurrently \"npx sass src:public --watch\" \"npx ttsc --watch\" \"cd public && npx live-server\"",
+    "build": "npx sass src:public && npm run prepare && npx ttsc",
+    "prepare": "npx snowpack install --dest 'public/web_modules/' --include 'src/**/*.ts' --clean"
   },
   "repository": {
     "type": "git",
@@ -25,11 +26,22 @@
     "@babel/cli": "^7.8.4",
     "@babel/core": "^7.9.0",
     "@babel/preset-typescript": "^7.9.0",
+    "@magic-works/ttypescript-browser-like-import-transformer": "^2.0.2",
+    "babel-preset-minify": "^0.5.1",
     "concurrently": "^5.1.0",
+    "live-server": "^1.2.1",
     "now": "^17.1.1",
-    "snowpack": "^1.6.0"
+    "sass": "^1.26.3",
+    "snowpack": "^1.6.0",
+    "ttypescript": "^1.5.10",
+    "typescript": "^3.8.3"
   },
   "dependencies": {
-    "preact": "^10.3.4"
+    "@now/node": "^1.5.0",
+    "faunadb": "^2.13.1",
+    "htm": "^3.0.3",
+    "nanoid": "^3.0.2",
+    "preact": "^10.3.4",
+    "scoped-style": "^1.5.0"
   }
 }

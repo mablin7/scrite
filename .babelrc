@@ -1,4 +1,16 @@
 {
-    "presets": ["@babel/preset-typescript"],
-    "plugins": ["snowpack/assets/babel-plugin.js"]
+    "presets": [["@babel/preset-typescript", {
+      "module": "ES6",
+      "parserArgs": {
+        "module": "ES6"
+      }
+    }]],
+    "env": {
+      "production": {
+        "presets": ["minify"]
+      }
+    },
+    "plugins": [
+      ["snowpack/assets/babel-plugin.js", {}]
+    ]
   }

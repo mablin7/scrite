@@ -1,0 +1,31 @@
+{
+    "compilerOptions": {
+        "strict": false,
+        "outDir": "public/dist",
+        // Choose your target based on which browsers you'd like to support.
+        "target": "es2017",
+        // Required: Use module="esnext" so that TS won't compile/disallow any ESM syntax.
+        "module": "esnext",
+        // Optional, but recommended
+        "moduleResolution": "node",
+        // Optional, but recommended
+        "baseUrl": ".",
+        // Required: Map "/web_modules/*" imports back to their node_modules/ TS definition files.
+        "paths": {
+            "/web_modules/*.js": [
+                "node_modules/@types/*",
+                "node_modules/*",
+                "public/web_modules/*.js"
+            ]
+        },
+        "plugins": [
+            {
+                "transform": "@magic-works/ttypescript-browser-like-import-transformer",
+                "after": true,
+                "bareModuleRewrite": "snowpack"
+            }
+        ]
+    },
+    "include": ["src/**/*"],
+    "exclude": ["node_modules"]
+}
