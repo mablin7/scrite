@@ -1,5 +1,10 @@
 {
     "presets": ["@babel/preset-typescript"],
+    "env": {
+      "production": {
+        "presets": ["minify"]
+      }
+    },
     "plugins": [
       ["snowpack/assets/babel-plugin.js", {}]
     ]

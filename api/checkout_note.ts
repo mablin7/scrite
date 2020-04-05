@@ -11,21 +11,23 @@ if (secret) {
 
 export default async (req: NowRequest, res: NowResponse) => {
   try {
-    let title
-    if (req.body.title) {
-      title = req.body.title
-    } else {
-      let url = new URL(req.url, `http://${req.headers.host}`)
-      if (url.searchParams.has('title')) {
-        title = url.searchParams.get('title')
-      } else {
-        res.status(400).json({ error: 'Provide a note title!' })
-        return
-      }
+    if (!client) {
+      res.status(500).json({ error: 'Database not available' })
+      return
+    }
+    
+    let { title = undefined } = req.body || {}
+    let url = new URL(req.url, `http://${req.headers.host}`)
+    if (url.searchParams.has('title'))
+      title = url.searchParams.get('title')
+
+    if (!title) {
+      res.status(400).json({ error: 'Provide a note title!' })
+      return
     }
 
     if (!client) {
-      res.status(500).json({ error: 'Database not available' })
+      res.status(505).json({ error: 'Database not available' })
       return
     }
 
@@ -39,6 +41,8 @@ export default async (req: NowRequest, res: NowResponse) => {
       res.status(404).json({ error: 'Note not found!' })
       return
     }
+
+
 
     res.json(notes[0].data)
   } catch (error) {

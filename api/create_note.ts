@@ -17,11 +17,14 @@ export default async (req: NowRequest, res: NowResponse) => {
       return
     }
     
-    let { title = undefined, content = '' } = req.body
-
-    let is_id_free = false
+    let { req_title = nanoid(), content = '' } = req.body || {}
+    let url = new URL(req.url, `http://${req.headers.host}`)
+    if (url.searchParams.has('title'))
+      req_title = url.searchParams.get('title')
+    
+    let title: string, is_id_free = false
     do {
-      title = nanoid()
+      title = title ? req_title : nanoid()
       is_id_free = await client.query(
         q.IsEmpty(q.Match(q.Index('notes_by_title'), title))
       )
