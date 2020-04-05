@@ -1,0 +1,5 @@
+{
+    "routes": [
+      { "src": "/notes/(?<id>[^/]*)", "dest": "/index.html/$id" }
+    ]
+  }
