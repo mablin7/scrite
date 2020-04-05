@@ -38,13 +38,17 @@ export default async (req: NowRequest, res: NowResponse) => {
       .each(page => { notes = notes.concat(page) } )
     
     if (notes.length === 0) {
-      res.status(404).json({ error: 'Note not found!' })
-      return
+      await client.query(
+        q.Create(
+          q.Collection('notes'),
+          { data: { title: title, data: '' } }
+        )
+      )
+  
+      res.json({ title, data: '' })
+    } else {
+      res.json(notes[0].data)
     }
-
-
-
-    res.json(notes[0].data)
   } catch (error) {
     res.status(500).json({ error })
   }

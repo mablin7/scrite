@@ -35,6 +35,15 @@ function HorLine({ lineHeight, idx }: { lineHeight: number, idx: number }) {
 function App() {
     const lineHeight = 30
     const [numLines, setNumLines] = useState(Math.floor(window.innerHeight / lineHeight))
+    const [title, setTitle] = useState('')
+
+    if (title === '') {
+        fetch(`/api/checkout_note?title=${title}`)
+        .then(res => res.json())
+        .then(({n_title, content}) => {
+            setTitle(n_title)
+        })
+    }
 
     function onResize() {
         setNumLines(Math.floor(window.innerHeight / lineHeight))
@@ -51,7 +60,8 @@ function App() {
 
     return html`
         <div class="main">
-            ${Content()}
+            ${title === '' ? '' : Content({title})}
+            
 
             <div class="bg">
                 ${lines}

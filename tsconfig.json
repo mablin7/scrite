@@ -1,6 +1,6 @@
 {
     "compilerOptions": {
-        "strict": true,
+        "strict": false,
         "outDir": "public/dist",
         // Choose your target based on which browsers you'd like to support.
         "target": "es2017",

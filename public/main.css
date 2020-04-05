@@ -16,7 +16,11 @@ body, html, #app {
   word-wrap: break-word;
   hyphens: auto;
   outline: 0;
-  font-size: 21px;
+  font-size: 26px;
+}
+
+.content img {
+  max-width: 50%;
 }
 
 .bg {

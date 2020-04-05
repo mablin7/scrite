@@ -17,7 +17,11 @@ $lineHeight: 30px;
     word-wrap: break-word;
     hyphens: auto;
     outline: 0;
-    font-size: $lineHeight - 9;
+    font-size: $lineHeight - 4;
+}
+
+.content img {
+    max-width: 50%;
 }
 
 .bg {
