@@ -36,12 +36,15 @@ function App() {
     const lineHeight = 30
     const [numLines, setNumLines] = useState(Math.floor(window.innerHeight / lineHeight))
     const [title, setTitle] = useState('')
+    const [cont, setCont] = useState('')
 
     if (title === '') {
-        fetch(`/api/checkout_note?title=${title}`)
+        let pathArray = window.location.pathname.split('/')
+        fetch(`/api/checkout_note?title=${pathArray[pathArray.length-1]}`)
         .then(res => res.json())
         .then(({n_title, content}) => {
             setTitle(n_title)
+            setCont(content)
         })
     }
 
@@ -60,7 +63,7 @@ function App() {
 
     return html`
         <div class="main">
-            ${title === '' ? '' : Content({title})}
+            ${title === '' ? '' : Content({title, content: cont})}
             
 
             <div class="bg">

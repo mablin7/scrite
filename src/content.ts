@@ -1,5 +1,5 @@
 import {  } from 'preact'
-import { useRef, PropRef, useState } from 'preact/hooks'
+import { useRef, PropRef, useState, useEffect } from 'preact/hooks'
 import { html } from 'htm/preact'
 
 import { Menu, MenuProps } from './menu'
@@ -19,10 +19,14 @@ async function postData(url = '', data = {}) {
   }
   
 
-export function Content({ title }: { title: string }) {
+export function Content({ title, content }: { title: string, content: string }) {
     const editorRef: PropRef<HTMLDivElement|null> = useRef(null)
     const imgFileInput: PropRef<HTMLInputElement|null> = useRef(null)
     const [lastCaretPos, setLastCaretPos]  = useState<{ offset: number, textNode: Node|null }>({ offset: 0, textNode: null })
+
+    useEffect(() => {
+        if (editorRef.current) editorRef.current.innerHTML = content
+    }, [content, editorRef])
 
     function storeCaretPos(e: MouseEvent) {
         let range
