@@ -1,5 +1,10 @@
 {
-    "presets": ["@babel/preset-typescript"],
+    "presets": [["@babel/preset-typescript", {
+      "module": "ES6",
+      "parserArgs": {
+        "module": "ES6"
+      }
+    }]],
     "env": {
       "production": {
         "presets": ["minify"]

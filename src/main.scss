@@ -1,0 +1,59 @@
+body, html, #app {
+    padding: 0;
+    margin: 0;
+    width: 100%;
+}
+
+.main {
+    max-width: 800px;
+    margin: auto;
+}
+
+$lineHeight: 30px;
+.content {
+    margin: $lineHeight 5px $lineHeight 57px;
+    min-height: calc(100vh - #{$lineHeight*2});
+    line-height: $lineHeight;
+    word-wrap: break-word;
+    hyphens: auto;
+    outline: 0;
+    font-size: $lineHeight - 9;
+}
+
+.bg {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    width: 100vw;
+    max-width: 800px;
+    height: 100vh;
+    background-color: #FDF3B6;
+    z-index: -1;
+}
+
+.hor-line {
+    position: absolute;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background-color: #D4D9C6;
+}
+
+.vert-line {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 50px;
+    width: 1px;
+    background-color: #FE7A5B;
+}
+
+.vert-line::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 2px;
+    width: 1px;
+    background-color: #FE7A5B;
+}
